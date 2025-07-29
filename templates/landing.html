@@ -1,75 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="flex items-center justify-center min-h-screen px-4 py-12 bg-gradient-to-br from-indigo-500 to-purple-600 dark:from-gray-900 dark:to-gray-800 transition-all">
+  <div class="text-center max-w-2xl w-full bg-white/10 dark:bg-white/5 backdrop-blur-md p-8 rounded-3xl shadow-xl animate-fadeIn">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-white dark:text-gray-100 mb-6">
+      Welcome to ABJ CRM
+    </h1>
+    <p class="text-lg md:text-xl text-white/90 dark:text-gray-300 mb-8">
+      Track your leads, manage interactions, and grow your business with a streamlined CRM solution built just for you.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="{% url 'leads:lead-list' %}">
+        <button class="px-6 py-3 bg-white text-indigo-600 font-semibold rounded-full shadow hover:scale-105 transition-transform">
+          View Leads
+        </button>
+      </a>
+      <a href="{% url 'login' %}">
+        <button class="px-6 py-3 border border-white text-white dark:text-gray-100 font-semibold rounded-full hover:bg-white/20 transition-all">
+          Log In
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
+
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
-
-  body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: #ffffff;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .welcome-container {
-    text-align: center;
-    max-width: 700px;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(10px);
-    animation: fadeIn 1.2s ease;
-  }
-
-  .welcome-container h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
-  }
-
-  .welcome-container p {
-    font-size: 1.125rem;
-    margin-bottom: 2rem;
-    line-height: 1.6;
-  }
-
-  .btn-group {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: transform 0.2s ease, background 0.3s ease;
-  }
-
-  .btn-primary {
-    background-color: #ffffff;
-    color: #4f46e5;
-  }
-
-  .btn-secondary {
-    background-color: transparent;
-    color: #ffffff;
-    border: 2px solid #ffffff;
-  }
-
-  .btn:hover {
-    transform: scale(1.05);
-  }
-
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -81,16 +36,8 @@
     }
   }
 
-  @media (max-width: 600px) {
-    .welcome-container h1 {
-      font-size: 2.2rem;
-    }
+  .animate-fadeIn {
+    animation: fadeIn 1s ease-in-out;
   }
 </style>
-
-<div class="welcome-container">
-  <h1>Welcome to ABJ CRM</h1>
-  <p>Track your leads, manage interactions, and grow your business with a streamlined CRM solution built just for you.</p>
-</div>
-
 {% endblock content %}
