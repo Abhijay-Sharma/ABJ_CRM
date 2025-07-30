@@ -24,6 +24,8 @@ class Lead(models.Model):
     date_added=models.DateTimeField(auto_now_add=True)
     phone_number=models.CharField(max_length=200)
     emails=models.EmailField(max_length=254)
+    class Meta:
+        unique_together = ('emails', 'phone_number')
 
     def __str__(self):
         return f"{self.first_name}{self.last_name}"
