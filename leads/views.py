@@ -87,7 +87,7 @@ def lead_detail(request,pk):
     }
     return render(request, 'leads/lead_detail.html',context)
 
-class LeadCreateView(OrganisorAndRequiredMixin,CreateView):
+class LeadCreateView(LoginRequiredMixin,CreateView):
     template_name = 'leads/lead_create.html'
     form_class = LeadModelForm
 
@@ -117,7 +117,7 @@ def lead_create(request):
     return render(request,"leads/lead_create.html",context)
 
 
-class LeadUpdateView(OrganisorAndRequiredMixin,UpdateView):
+class LeadUpdateView(LoginRequiredMixin,UpdateView):
     template_name = 'leads/lead_update.html'
     form_class = LeadModelForm
     def get_queryset(self):
