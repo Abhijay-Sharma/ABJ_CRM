@@ -5,7 +5,7 @@ from django.core.management.base import BaseCommand
 from leads.models import Lead, UserProfile, Agent  # add Agent, Category if needed
 from django.utils.dateparse import parse_datetime
 
-ACCESS_TOKEN = 'EAASw7mrwjR4BPOrn2j231eXKraP2AknVXhb4lrmsm86STeacPHb6WJEPzrLxF5eDnIymNmISDc0Bza1VrOfzgjpDZBx6bNs8iZCPAv53SZAep9nbmThIFAEGzNnYRDabMZBwQrq38cYRTUkhz4pUpOXvOchzwwobjmN2uPWOVugIBVbIgxIE9Kli2okAYfMjHSsmdCpdLRpxcZCPJmwcNa5t7KoHjqCry'
+ACCESS_TOKEN="EAASw7mrwjR4BPOKROTWMEQd9VqK4AJ9NZCZCV8pR2xKWbwG1k60uvZCxtkzIA7v4nEHGYi6S6rl9yAZAEXzCIcNfM0AmXZAF8GxFOSBTUMFa2VgWv0OHQC5BaMWK46hYNhUwUIllH5RPdClh7A76iH7ZCg9how12mAVpNs5tpW6ONlp7qDeiTDs0ZB4qP9BDrTASISVO5tT"
 FORM_ID='120227592556850482'
 FORM_ID_VIDEO='120227819770820482'
 
@@ -13,7 +13,7 @@ class Command(BaseCommand):
     help = 'Fetch Meta leads and save to Lead model'
 
     def handle(self, *args, **kwargs):
-        url = f'https://graph.facebook.com/v23.0/{FORM_ID_VIDEO}/leads'
+        url = f'https://graph.facebook.com/v23.0/{FORM_ID}/leads'
         params = {
             'access_token': ACCESS_TOKEN,
             'fields': 'created_time,field_data',
