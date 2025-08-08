@@ -13,7 +13,7 @@ class Command(BaseCommand):
     help = 'Fetch Meta leads and save to Lead model'
 
     def handle(self, *args, **kwargs):
-        url = f'https://graph.facebook.com/v23.0/{FORM_ID_VIDEO}/leads'
+        url = f'https://graph.facebook.com/v23.0/{FORM_ID}/leads'
         params = {
             'access_token': ACCESS_TOKEN,
             'fields': 'created_time,field_data',
