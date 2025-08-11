@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<div id="autocomplete" class="autocomplete">
+  <input class="autocomplete-input" />
+  <ul class="autocomplete-result-list"></ul>
+</div>
 <section class="text-gray-700 body-font">
     <div class="container px-5 py-24 mx-auto flex flex-wrap">
         <div class="w-full mb-6 py-6 flex justify-between items-center border-b border-gray-200">
@@ -138,4 +141,31 @@
         {% endif %}
     </div>
 </section>
+<script src="https://unpkg.com/@trevoreyre/autocomplete-js"></script>
+<script>let leadMap = {}; // store name → id mapping
+
+new Autocomplete('#autocomplete', {
+    search: input => {
+        console.log(input);
+        const url = `/leads/search/?lead=${input}`;
+        return fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                // Fill leadMap with name → id
+                leadMap = {};
+                data.data.forEach(item => {
+                    leadMap[item[0]] = item[1];
+                });
+                // Return only names for display
+                return data.data.map(item => item[0]);
+            });
+    },
+    onSubmit: result => {
+        const id = leadMap[result]; // get the id from the map
+        if (id) {
+            window.open(`/leads/${id}`);
+        }
+    }
+});</script>
 {% endblock content %}

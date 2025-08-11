@@ -1,11 +1,12 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect , reverse
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import Lead , Agent , Category
 from .forms import LeadForm , LeadModelForm , CustomUserCreationForm, AssignAgentForm , LeadCategoryUpdateForm, CategoryModelForm
 from django.views.generic import TemplateView, ListView, DetailView , CreateView , UpdateView , DeleteView , FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from agents.mixins import OrganisorAndRequiredMixin
+from django.db.models import Q
 
 
 # Create your views here.
@@ -320,3 +321,17 @@ def get_client_ip(request):
     return ip
 
 
+# /search?lead=
+
+def search_leads(request):
+    lead = request.GET.get('lead')
+    payload=[]
+    if lead:
+        lead_objs = Lead.objects.filter(
+            Q(first_name__icontains=lead) | Q(last_name__icontains=lead)
+        )
+
+        for lead_obj in lead_objs:
+            payload.append([lead_obj.first_name + " " + lead_obj.last_name, lead_obj.id])
+
+    return JsonResponse({'status':200,'data':payload})
