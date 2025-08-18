@@ -17,6 +17,7 @@ class Command(BaseCommand):
         params = {
             'access_token': ACCESS_TOKEN,
             'fields': 'created_time,field_data',
+            'limit': 1000,
         }
 
         response = requests.get(url, params=params)
