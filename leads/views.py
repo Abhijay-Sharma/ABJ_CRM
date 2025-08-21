@@ -44,7 +44,7 @@ class LeadListView(LoginRequiredMixin,ListView):
             )
             # filter for the agent that is logged in
             queryset = queryset.filter(agent__user=user)
-        return queryset
+        return queryset.order_by('-created_time')
 
     def get_context_data(self, **kwargs):
         # now we will grab the already existing context by using the super command
