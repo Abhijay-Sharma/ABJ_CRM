@@ -24,6 +24,8 @@ class Lead(models.Model):
     date_added=models.DateTimeField(auto_now_add=True)
     phone_number=models.CharField(max_length=200)
     emails=models.EmailField(max_length=254)
+    # New field to store FB lead creation time
+    created_time = models.DateTimeField(null=True, blank=True)
     class Meta:
         unique_together = ('emails', 'phone_number')
 
